@@ -21,6 +21,11 @@ class Solution
         //if we got consectutive elements
         else if(head.data == head.next.data){
             head.next = findNextElement(head);
+            //if the function returned the same value, its the last on the list
+            if (head.data == head.next.data) {
+                head.next = null;
+                return head;
+            }
             removeDuplicates(head.next);
         }
         //Move on the list
@@ -32,13 +37,11 @@ class Solution
     
     public static Node findNextElement(Node head){
         Node nextElement = head.next;
-        while(head.data == nextElement.data){
+        while(head.data == nextElement.data && nextElement.next !=null){
             nextElement = findNextElement(head.next);
         }
-        
+
         return nextElement;
-        
-        
     }
 
 	 public static  Node insert(Node head,int data)
